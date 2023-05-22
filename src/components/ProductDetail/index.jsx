@@ -25,10 +25,14 @@ const ProductDetail = () => {
                     alt={ context.productToShow.title }
                 />
             </figure>
-            <p className='flex flex-col p-6 '>
+            <p className='flex flex-col px-6 pt-6'>
                 <span className='font-medium text-2xl mb-2'>${ context.productToShow.price }</span>
                 <span className='font-medium text-md mb-1'>{ context.productToShow.title }</span>
                 <span className='font-light text-md'>{ context.productToShow.description }</span>
+            </p>
+            <p className='px-6 pt-3'>
+                <span className='font-medium text-md mr-5'>Category:</span>
+                <span className='font-light text-md'>{ context.productToShow.category}</span>
             </p>
         </aside>
     )
