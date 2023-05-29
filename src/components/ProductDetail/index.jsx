@@ -8,7 +8,7 @@ const ProductDetail = () => {
     
     return (
         <aside
-            className={`${context.isProductDetailOpen ? 'flex' : 'hidden'} product-detail flex-col fixed right-0 border border-black rounded-lg bg-white`}
+            className={`${context.isProductDetailOpen ? 'flex' : 'hidden'} product-detail overflow-y-scroll flex-col fixed right-0 border border-black rounded-lg bg-white pb-5`}
         > 
             <div className='flex justify-between items-center p-6'>
                 <h2 className='font-medium text-xl'>Detail</h2>
@@ -19,9 +19,9 @@ const ProductDetail = () => {
                     <XMarkIcon className='h-6 w-6 text-black'></XMarkIcon>
                 </div>
             </div>
-            <figure className='px-6'>
+            <figure className='px-6 w-40 h-40'>
                 <img
-                    className='w-full h-full rounded-lg'
+                    className='w-full h-full object-cover'
                     src={ context.productToShow.image }
                     alt={ context.productToShow.title }
                 />

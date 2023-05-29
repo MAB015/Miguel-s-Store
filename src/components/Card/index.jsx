@@ -20,6 +20,15 @@ const Card = ( data ) => {
         context.openCheckoutSideMenu()
     }
 
+    const deleteProductsFromCart = (event, id) => {
+        event.stopPropagation()
+        context.setCounter( context.counter - 1 )
+        const filteredProducts = context.cartProducts.filter(product => product.id !== id)
+        context.setCartProducts(filteredProducts)
+        context.closeProductDetail()
+        context.openCheckoutSideMenu()
+    }
+
     const renderButton = (id) => {
         const isInCart = context.cartProducts.filter(product => product.id === id).length > 0
 
@@ -27,6 +36,7 @@ const Card = ( data ) => {
             return (
                 <button
                     className='absolute bottom-0 right-0 flex justify-center items-center bg-black w-6 h-6 text-white  rounded-full m-2 p-1 shadow-sm shadow-black'
+                    onClick={(event) => deleteProductsFromCart(event, id)}
                 >
                         <CheckIcon className='h-6 w-6'></CheckIcon>
                 </button>
@@ -36,6 +46,7 @@ const Card = ( data ) => {
                 <button
                     className='absolute bottom-0 right-0 flex justify-center items-center bg-white w-6 h-6 text-black  rounded-full m-2 p-1 border border-gray-400 shadow-sm shadow-black hover:bg-black hover:text-white'
                     onClick={(event) => addProductsToCart(event, data.data)}
+                    
                 >
                         <PlusIcon className='h-6 w-6'></PlusIcon>
                 </button>
