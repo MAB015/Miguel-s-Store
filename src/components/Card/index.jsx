@@ -14,7 +14,6 @@ const Card = ( data ) => {
 
     const addProductsToCart = (event, productData) => {
         event.stopPropagation()
-        context.setCounter( context.counter + 1 )
         context.setCartProducts([...context.cartProducts, productData])
         context.closeProductDetail()
         context.openCheckoutSideMenu()
@@ -22,7 +21,6 @@ const Card = ( data ) => {
 
     const deleteProductsFromCart = (event, id) => {
         event.stopPropagation()
-        context.setCounter( context.counter - 1 )
         const filteredProducts = context.cartProducts.filter(product => product.id !== id)
         context.setCartProducts(filteredProducts)
         context.closeProductDetail()
@@ -46,7 +44,6 @@ const Card = ( data ) => {
                 <button
                     className='absolute bottom-0 right-0 flex justify-center items-center bg-white w-6 h-6 text-black  rounded-full m-2 p-1 border border-gray-400 shadow-sm shadow-black hover:bg-black hover:text-white'
                     onClick={(event) => addProductsToCart(event, data.data)}
-                    
                 >
                         <PlusIcon className='h-6 w-6'></PlusIcon>
                 </button>

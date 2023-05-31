@@ -12,7 +12,9 @@ const Navbar = () => {
             <ul className='flex items-center gap-4'>
                 <li className='font-semibold text-lg'>
                     <NavLink
-                        to='/'>
+                        to='/'
+                        onClick={() => context.setSearchByCategory(null)}
+                    >
                             Miguel&apos;s Store
                     </NavLink>
                 </li>
@@ -58,10 +60,13 @@ const Navbar = () => {
                             Sign out
                     </NavLink>
                 </li>
-                <li className='flex items-center'>
+                <li
+                    className='flex items-center cursor-pointer'
+                    onClick={() => context.openCheckoutSideMenu() }
+                >
                     <ShoppingBagIcon className='h-6 w-6 text-black'></ShoppingBagIcon>
                     <div>
-                        { context.counter }
+                        { context.cartProducts.length }
                     </div>
                 </li>
             </ul>
