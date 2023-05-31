@@ -7,8 +7,11 @@ import { ShoppingCartContext } from "../../Context"
 function Home() {
     const context = useContext(ShoppingCartContext)
 
+    const currentPath = window.location.pathname
+    let index = currentPath.substring(currentPath.lastIndexOf('/') + 1)
+
     const renderView = () => {
-        if (context.searchByTitle?.length > 0){
+        if (context.searchByTitle?.length > 0) {
             if(context.filteredItems?.length > 0){
                 return (
                     context.filteredItems?.map(item => (
@@ -22,6 +25,14 @@ function Home() {
                             No results found
                         </p>
                     </div>
+                )
+            }
+        } else if (index.length > 0) {
+            if(context.categories?.length > 0){
+                return (
+                    context.filteredItems?.map(item => (
+                        <Card key={item.id} data={item} />
+                    ))
                 )
             }
         } else {

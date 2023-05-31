@@ -20,7 +20,9 @@ const Navbar = () => {
                     context.categories?.map((category, index) => (
                         <li key={index} className='text-sm'>
                             <NavLink
-                                to={ '/' + category }>
+                                to={ '/' + category }
+                                onClick={() => context.setSearchByCategory(category)}
+                            >
                                     { category }
                             </NavLink>
                         </li>
