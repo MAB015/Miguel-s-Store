@@ -32,7 +32,6 @@ const OrderCard = props => {
                     renderXMarkIcon
                 }
             </div>
-           
         </div>
     )
 }

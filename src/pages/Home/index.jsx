@@ -1,26 +1,51 @@
-import { useState, useEffect } from "react"
+import { useContext } from "react"
 import Layout from "../../components/Layout"
 import Card from "../../components/Card"
 import ProductDetail from "../../components/ProductDetail"
+import { ShoppingCartContext } from "../../Context"
 
 function Home() {
-    const [items, setItems] = useState(null)
+    const context = useContext(ShoppingCartContext)
 
-    useEffect(() => {
-        fetch('https://fakestoreapi.com/products')
-            .then(response => response.json())
-            .then(data => setItems(data))
-    }, [])
+    const renderView = () => {
+        if (context.searchByTitle?.length > 0){
+            if(context.filteredItems?.length > 0){
+                return (
+                    context.filteredItems?.map(item => (
+                        <Card key={item.id} data={item} />
+                    ))
+                )
+            }else{
+                return (
+                    <div className="text-center">
+                        <p className="text-3xl font-bold text-gray-800">
+                            No results found
+                        </p>
+                    </div>
+                )
+            }
+        } else {
+            return (
+                context.items?.map(item => (
+                    <Card key={item.id} data={item} />
+                ))
+            )
+        }
+    }
 
     return (
         <Layout>
-            Home
+            <div className='flex items-center justify-center relative w-80 mb-4'>
+                <h1 className='font-medium text-xl'>Exclusive Products</h1>
+            </div>
+            <input
+                type='text'
+                placeholder='Search a product'
+                className='rounded-lg border shadow-md shadow-gray-400 w-80 p-4 mb-8 focus:outline-none'
+                onChange={(e) => context.setSearchByTitle(e.target.value)}
+            />
             <div className='grid gap-10 grid-cols-auto justify-items-center sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 '>
-                {
-                    items?.map(item => (
-                        <Card key={item.id} data={item} />
-                    ))
-                }
+                { renderView() }
             </div>
             <ProductDetail />
         </Layout>
