@@ -1,6 +1,9 @@
+import { useContext } from 'react'
+import { ShoppingCartContext } from '../../Context'
 import { XMarkIcon } from '@heroicons/react/24/solid'
 
 const OrderCard = props => {
+    const context = useContext( ShoppingCartContext )
     const { id, title, imageUrl, price, handleDelete } = props
 
     let renderXMarkIcon
@@ -9,6 +12,7 @@ const OrderCard = props => {
             className='h-6 w-6 text-black cursor-pointer'
             onClick={() => {
                 handleDelete( id )
+                context.setCounter( context.counter - 1 )
             }}
         ></XMarkIcon>
     }
