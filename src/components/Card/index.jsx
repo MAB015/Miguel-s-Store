@@ -61,15 +61,15 @@ const Card = ( data ) => {
 
     return (
         <div
-            className='bg-white cursor-pointer w-64 h-80 shadow-md shadow-black/20'
+            className=' cursor-pointer w-64 h-80 shadow-md shadow-black/20'
             onClick={() => showProduct(data.data)}
         >
-            <figure className='relative mb-2 w-full h-4/5'>
+            <figure className='bg-white relative p-4 w-full h-4/5 rounded-xl hover:p-0'>
                 <span className='absolute bottom-0 left-0 bg-white/80 rounded-lg text-black text-xs m-2 px-3 py-1 shadow-sm shadow-black'>{ data.data.category }</span>
                 <img className='w-full h-full object-contain rounded-lg' src={ data.data.image } alt={ data.data.title } />
                 { renderButton(data.data.id) }
             </figure>
-            <p className='flex justify-between gap-3 px-3 items-center h-1/5'>
+            <p className='flex justify-between gap-4 px-4 items-center h-1/5 border rounded-xl'>
                 <span className='text-sm font-light'>{ titleProduct() }</span>
                 <span className='text-lg font-medium'>${ data.data.price }</span>
             </p>

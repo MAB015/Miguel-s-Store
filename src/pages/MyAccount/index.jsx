@@ -4,7 +4,7 @@ function MyAccount() {
 
     return (
         <Layout>
-            My Account
+            <h1 className='font-medium text-xl'>My Account</h1>
         </Layout>
     )
 }

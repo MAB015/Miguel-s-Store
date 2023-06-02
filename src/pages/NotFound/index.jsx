@@ -4,7 +4,7 @@ function NotFound() {
 
     return (
         <Layout>
-            Not Found
+            <h1 className='font-medium text-xl'>Not Found</h1>
         </Layout>
     )
 }

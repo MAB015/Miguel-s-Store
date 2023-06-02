@@ -4,7 +4,7 @@ function SignIn() {
 
     return (
         <Layout>
-            Sign In
+            <h1 className='font-medium text-xl'>Sign In</h1>
         </Layout>
     )
 }

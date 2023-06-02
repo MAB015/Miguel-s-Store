@@ -18,7 +18,7 @@ function Home() {
         }else{
             return (
                 <div className="text-center">
-                    <p className="text-3xl font-bold text-gray-800">
+                    <p className="text-3xl font-bold">
                         No results found
                     </p>
                 </div>
@@ -34,7 +34,7 @@ function Home() {
             <input
                 type='text'
                 placeholder='Search a product'
-                className='rounded-lg border shadow-md shadow-gray-400 w-80 p-4 mb-8 focus:outline-none'
+                className=' bg-gray-200 rounded-lg border shadow-lg shadow-[#6f2232] w-80 p-4 mb-8 text-black focus:outline-none focus:bg-white'
                 onChange={(e) => context.setSearchByTitle(e.target.value)}
             />
             <div className='grid gap-10 grid-cols-auto justify-items-center sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 '>

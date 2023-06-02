@@ -22,24 +22,28 @@ const CheckoutSideMenu = () => {
             totalPrice: totalPrice(context.cartProducts)
         }
 
-        context.setOrder([...context.order, orderToAdd])
-        context.setCartProducts([])
-        context.setCounter(0)
-        context.closeCheckoutSideMenu()
-        context.setSearchByTitle(null)
+        if(context.counter > 0) {
+            context.setOrder([...context.order, orderToAdd])
+            context.setCartProducts([])
+            context.setCounter(0)
+            context.closeCheckoutSideMenu()
+            context.setSearchByTitle(null)
+        } else {
+            alert('Please add some products to cart')
+        }
     }	
 
     return (
         <aside
-            className={`${context.isCheckoutSideMenuOpen ? 'flex' : 'hidden'} checkout-side-menu flex-col fixed right-0 border border-black rounded-lg bg-white`}
+            className={`${context.isCheckoutSideMenuOpen ? 'flex' : 'hidden'} checkout-side-menu flex-col fixed right-0 border border-black rounded-lg bg-[#1A1A1D]`}
         > 
-            <div className='flex justify-between items-center px-4 py-4 border-b-2 border-gray-500'>
-                <h2 className='font-medium text-xl'>My Order</h2>
+            <div className='flex justify-between items-center border-b-2 border-gray-600 w-full pl-6 py-4 mb-6'>
+                <h2 className='font-medium text-4xl'>Detail</h2>
                 <div
                     onClick={() => context.closeCheckoutSideMenu() }
-                    className='cursor-pointer'
+                    className='cursor-pointer pr-6'
                 >
-                    <XMarkIcon className='h-6 w-6 text-black'></XMarkIcon>
+                    <XMarkIcon className='h-6 w-6'></XMarkIcon>
                 </div>
             </div>
             <div className='overflow-y-scroll pt-4 px-4 pr-2 flex-1'>
@@ -56,7 +60,7 @@ const CheckoutSideMenu = () => {
                     ))
                 }
             </div>
-            <div className='py-4 px-4 relative bottom-0 bg-white w-full border-t-2 border-gray-500'>
+            <div className='px-4 relative bottom-0 w-full border-t-2 border-gray-600 py-4'>
                 <p className='flex justify-between items-center mb-4'>
                     <span className='font-light'>Total price:</span>
                     <span className='font-medium text-2xl'>${ totalPrice( context.cartProducts ) }</span>
