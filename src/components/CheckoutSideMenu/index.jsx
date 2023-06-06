@@ -4,6 +4,7 @@ import { XMarkIcon } from '@heroicons/react/24/solid'
 import { ShoppingCartContext } from '../../Context'
 import OrderCard from '../OrderCard'
 import { totalPrice } from '../../utils'
+import { Navigate } from 'react-router-dom'
 import './styles.css'
 
 const CheckoutSideMenu = () => {
@@ -15,22 +16,17 @@ const CheckoutSideMenu = () => {
     }
 
     const handleCheckout = () => {
-        const orderToAdd = {
-            date: '01.02.23',
-            products: context.cartProducts,
-            totalProducts: context.cartProducts.length,
-            totalPrice: totalPrice(context.cartProducts)
-        }
-
-        if(context.counter > 0) {
+            const orderToAdd = {
+                date: '01.02.23',
+                products: context.cartProducts,
+                totalProducts: context.cartProducts.length,
+                totalPrice: totalPrice(context.cartProducts)
+            }
             context.setOrder([...context.order, orderToAdd])
             context.setCartProducts([])
             context.setCounter(0)
             context.closeCheckoutSideMenu()
             context.setSearchByTitle(null)
-        } else {
-            alert('Please add some products to cart')
-        }
     }	
 
     return (
@@ -68,7 +64,9 @@ const CheckoutSideMenu = () => {
                 <Link to='my-orders/last'>
                     <button
                         className='w-full bg-black py-2 text-white rounded-lg'
-                        onClick={ () => handleCheckout() }>
+                        onClick={ () => handleCheckout() }
+                        disabled={ !context.cartProducts }
+                    >
                             Checkout
                         </button>
                 </Link>
